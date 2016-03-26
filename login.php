@@ -56,7 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$SQL = "SELECT * FROM $usertable WHERE username = $uname AND password = '$pword'";
 		//print_r($SQL);
 		$result = mysql_query($SQL);
-				if (!$result) {
+        if (!$result) {
     		trigger_error('Invalid query: ' . mysql_error()." in ".$query);
     	}
 		$num_rows = mysql_num_rows($result);
@@ -67,8 +67,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		//print_r($num_rows);
 		if ($result) {
 			if ($num_rows > 0) {
-				//session_start();
-				//$_SESSION['login'] = "1";
+				session_start();
+				$_SESSION['login'] = "1";
 				header ("Location: accounts.php");
 			}
 			else {
@@ -92,11 +92,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 ?>
 
-
-
-
-
-
 <html>
  <head>
   <title>Black Box Bank</title>
@@ -105,6 +100,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
  </head>
 
  <body style="background: white">
- 	<p> <?PHP print $errorMessage;?> </p>
  </body>
 </html>
