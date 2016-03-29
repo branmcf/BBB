@@ -1,28 +1,24 @@
 <?php
-    function isValid($sessionId)
+    function isValid($_SESSION)
     {
-       // $strId = (string) $sessionId;
-        $strId = (string) $sessionId;
-        if ($strId !== $sessionId){
-            return FALSE;
-        } else {
+      //  $strId = (string) $sessionId;
+       $strId = (string) $_SESSION['Private'];
+        if ($strId == (string) $sessionId){
             return TRUE;
+        } else {
+          //  return (bool) preg_match('/^[0-9a-zA-Z,-]{22,40}$/', $strId);
+            return FALSE;
         }
         
     }
-    $currentID = (string) session_id();
-    $result = isValid(currentID);
-    //echo '<p>Bank Index</p>';
-    if ($result==FALSE) {
-        //echo '<p>heading to account</p>';
-        header ("Location: accounts.php");
+    session_start();
+    if (!isset($_SESSION['pr_key']))
+    {
+         header ("Location: login.html");
     } else {
-        //echo '<p>heading to login</p>';
-        header ("Location: login.html");
+        header ("Location: accounts.php");
     }
-    print_r($result);
-
-?>
+    ?>
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -38,6 +34,16 @@
  <!--<a href="login.php" class="login_link">login</a>
  <a href="accounts.php" class="login_link">accounts</a>
  <a href="logout.php" class="login_link">logout</a> -->
-
+<h1>Private ID is <?=$currentID?></h1>
  </body>
 </html>
+<?php
+    // Store it back
+    session_name('Private');
+    session_id($private_id);
+    session_start();
+    $_SESSION['pr_key'] = $b;
+    session_write_close();
+    
+    
+    ?>

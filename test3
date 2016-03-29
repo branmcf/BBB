@@ -1,0 +1,52 @@
+<form id="form1" name="form1" action="" method="post" >
+<div>
+<label for="list">Center</label>
+<select name="list" onchange="this.form.submit()">
+<option value=''>-----SELECT-----</option>
+<?php
+	$usertable = "bmcfarland49_users";
+    $accttable = "bmcfarland49_accounts";
+	$hostname = "cse3342smu.db.9430912.hostedresource.com";
+	$username = "cse3342smu";
+	$dbname = "cse3342smu";
+	$password = "FaPn0!dMn";
+
+	$db_handle = mysql_pconnect($hostname, $username, $password);
+	$db_found = mysql_select_db($dbname, $db_handle);
+
+
+	if ($db_found) {
+
+		$uname = quote_smart($uname, $db_handle);
+		$pword = quote_smart($pword, $db_handle);
+
+        $SQL2 = "SELECT accountnum FROM $accttable WHERE username = $uname";
+        $accts = mysql_query($SQL2);
+        if (!$accts) {
+            trigger_error('Invalid query: ' . mysql_error()." in ".$query);
+        }
+        $num_acct = mysql_num_rows($accts);
+
+    while ($row = mysqli_fetch_assoc($accts))
+    {
+        $selected = (isset($_POST['list']) && $_POST['list'] ==  $row['id']) ? 'selected' : '';
+        echo "<option value='$row[id]' $selected >$row[accountnum]</option>";
+    }
+    ?>
+</select>
+</div>
+
+<div>
+<?php
+    if (isset($_POST['list']))
+    {
+        $result = mysqli_query($conn, 'SELECT code FROM center WHERE id=' . $_POST['list']);
+        while ($row = mysqli_fetch_assoc($result))
+        {
+            echo $row['code'];
+        }
+    }
+    ?>
+</div>
+
+</form>

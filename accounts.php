@@ -1,3 +1,19 @@
+<?PHP
+     
+    session_start();
+    if(isset($_SESSION['pr_key'])){
+            echo $private_id;
+            //         unset($_SESSION['account_info']);
+    }
+
+    if(isset($_SESSION['account_info'])){
+        foreach ($_SESSION['account_info'] as $arr){
+            echo $arr;
+            unset($_SESSION['account_info']);
+        }
+    }
+  
+    ?>
 <html>
  <head>
   <title>Black Box Bank</title>
@@ -9,10 +25,10 @@
  <body style="background: black;">
 
  <div class="container-fluid" id="divDaddy">
-	<?php echo '<p>Welcome, Test</p>'; ?> 
+	<?php echo '<p>Welcome, </p>' ?>
 
-	<h1> Checking Account </h1>
-	<button> Deposit </button> <button> Withdraw </button>
+	
+	<button> Deposit </button> <button> Withdraw </button> <button> Transfer </button>
 	<br>
 	<h1> Savings Account </h1>
 	<button> Deposit </button> <button> Withdraw </button>

@@ -12,9 +12,27 @@
  <a href="transfer.php" class="login_link">transfer</a>
  <a href="deposit.php" class="login_link">deposit</a>
  <a href="logout.php" class="login_link">logout</a>
- <?php echo '<p>transfer page</p>'; ?> 
+ <?php echo '<p>transfer page</p>'; ?>
+
+
+<select name="account1">
+<option value ="">
+<?php
+    session_start();
+    if(isset($_SESSION['account_info'])){
+        foreach ($_SESSION['account_info'] as $arr){
+     //       echo $arr;
+            unset($_SESSION['account_info']);
+        }
+    }
+
+    foreach($arr as $option);
+    //  echo '<option value="'.$p. '">'.$w.'</option>';
+    echo '<option>'.$option.'</option>';
+    endforeach
 
  <button type="button" class="btn" id="ghost1">Secondary</button>
 
  </body>
 </html>
+
