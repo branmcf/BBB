@@ -72,7 +72,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 session_name('Private');
                  session_start();
                  $private_id = session_id();
-                 $b = $_SESSION['pr_key'];
+                $b = $_SESSION['pr_key'];
+                session_write_close();
+                $_SESSION['new_session'] = $private_id;
+           //     echo $_SESSION['new_session'];
+                
+            //    print_r($private_id);
+            //     $b = $_SESSION['pr_key'];
+                 
+                
           //       session_write_close();
          //       echo $private_id;
                 
@@ -81,9 +89,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 if (!$upd) {
                     trigger_error('Invalid query: ' . mysql_error()." in ".$query);
                 }
-      //          $num_upd = mysql_num_rows($upd);
-                echo $num_upd;
-                
+         //       session_write_close();
+                header ("Location: accounts.php");
+    
+ 			}
+			else {
+				header ("Location: index.php");
+			}
+        }
+
+  /*
                 $SQL2 = "SELECT accountnum, balance FROM $accttable WHERE username = $uname";
                 $accts = mysql_query($SQL2);
                 if (!$accts) {
@@ -98,6 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                      
                 }
                 session_start();
+                
                 if(!empty($acctinfo_arr)){
                     $_SESSION['account_info'] = $acctinfo_arr;
                     session_write_close();
@@ -108,6 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 				header ("Location: index.php");
 			}	
 		}
+   */
 
 	mysql_close($db_handle);
 
@@ -131,4 +148,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
  <body style="background: white">
  </body>
 </html>
+<?php
+    // Store it back
+    session_name('Private');
+    session_id($private_id);
+    session_start();
+    $_SESSION['pr_key'] = $b;
+    session_write_close();
+    
+?>
 

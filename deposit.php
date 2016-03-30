@@ -1,3 +1,72 @@
+<?PHP
+    //==========================================
+	//	CONNECT TO THE LOCAL DATABASE
+	//==========================================
+	//$user_name = "root";
+	//$pass_word = "";
+	//$database = "login";
+	//$server = "127.0.0.1";
+    
+	//These variable values need to be changed by you before deploying
+	$usertable = "bmcfarland49_users";
+    $accttable = "bmcfarland49_accounts";
+	$hostname = "cse3342smu.db.9430912.hostedresource.com";
+	$username = "cse3342smu";
+	$dbname = "cse3342smu";
+	$password = "FaPn0!dMn";
+    
+    session_name('Private');
+    session_start();
+    //  echo "ID";
+    //  echo $_SESSION['new_session'];
+    $ID = $_SESSION['new_session'];
+    
+	$db_handle = mysql_pconnect($hostname, $username, $password);
+	$db_found = mysql_select_db($dbname, $db_handle);
+    
+    echo '<br/>';
+    echo '<h1> Make a Deposit </h1>';
+    echo '<br/>';
+    echo '<br/>';
+   
+	if ($db_found) {
+        $SQL = "SELECT accountnum, balance FROM $accttable WHERE session_id = '$ID'";
+        $accts = mysql_query($SQL);
+        if (!$accts) {
+            trigger_error('Invalid query: ' . mysql_error()." in ".$query);
+        }
+        $num_acct = mysql_num_rows($accts);
+        
+        echo '<select name="d_acct" >';
+        echo "<option value=''>Select an Account</option>";
+        
+        while ($row = mysql_fetch_array($accts, MYSQL_ASSOC))
+        {
+            echo "<option value='" . $row['balance'] . "'>" . $row['accountnum'] . "</option>";
+         }
+        echo "</select>";
+        echo "<br/>";
+        echo "<br/>";
+        echo "Amount"; 
+        echo "<br/>"; 
+        echo "<input type=text name=deposit_amt>";
+        echo "<br/>"; 
+        echo "Current Balance";
+        echo "<br/>";
+        echo "<input type=text name=balance_amt >";
+        echo "<br/>";
+        echo "New Balance";
+        echo "<br/>";
+        echo "<input type=text name=new_balance_amt >";
+        echo "<br/>";
+        echo "<br/>";
+     //   echo "<input type=button name=deposit_btn value='deposit >";
+
+
+    }
+    
+    ?>
+
 <html>
  <head>
   <title>Black Box Bank</title>
@@ -6,13 +75,7 @@
  </head>
 
  <body>
- <a href="index.php" class="login_link">home</a>
- <a href="login.php" class="login_link">login</a>
- <a href="accounts.php" class="login_link">accounts</a>
- <a href="transfer.php" class="login_link">transfer</a>
- <a href="deposit.php" class="login_link">deposit</a>
- <a href="logout.php" class="login_link">logout</a>
+ 
 
- <?php echo '<p>deposit page/p>'; ?> 
  </body>
 </html>

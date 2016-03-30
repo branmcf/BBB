@@ -25,10 +25,10 @@
 	$db_found = mysql_select_db($dbname, $db_handle);
     
     echo '<br/>';
-    echo '<h1> Do a Transfer </h1>';
+    echo '<h1> Do a Withdrawal </h1>';
     echo '<br/>';
     echo '<br/>';
-    
+   
 	if ($db_found) {
         $SQL = "SELECT accountnum, balance FROM $accttable WHERE session_id = '$ID'";
         $accts = mysql_query($SQL);
@@ -36,31 +36,21 @@
             trigger_error('Invalid query: ' . mysql_error()." in ".$query);
         }
         $num_acct = mysql_num_rows($accts);
-        echo '<label for="from_acct"> From Account </>';
-        echo '<select name="from_acct" id="from_acct">';
+        
+        echo '<select name="w_acct" >';
         echo "<option value=''>Select an Account</option>";
         
         while ($row = mysql_fetch_array($accts, MYSQL_ASSOC))
         {
             echo "<option value='" . $row['balance'] . "'>" . $row['accountnum'] . "</option>";
-        }
-        
-        echo '<label for="to_acct"> To Account </>';
-        echo '<select name="to_acct" id="to_acct">';
-        echo "<option value=''>Select an Account</option>";
-        
-        while ($row = mysql_fetch_array($accts, MYSQL_ASSOC))
-        {
-            echo "<option value='" . $row['balance'] . "'>" . $row['accountnum'] . "</option>";
-        }
-
+         }
         echo "</select>";
         echo "<br/>";
         echo "<br/>";
-        echo "Amount";
-        echo "<br/>";
+        echo "Amount"; 
+        echo "<br/>"; 
         echo "<input type=text name=deposit_amt>";
-        echo "<br/>";
+        echo "<br/>"; 
         echo "Current Balance";
         echo "<br/>";
         echo "<input type=text name=balance_amt >";
@@ -70,30 +60,21 @@
         echo "<input type=text name=new_balance_amt >";
         echo "<br/>";
         echo "<br/>";
-        
-        
+
+
     }
     
     ?>
 
-
 <html>
  <head>
   <title>Black Box Bank</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
  </head>
 
  <body>
- <a href="index.php" class="login_link">home</a>
- <a href="login.php" class="login_link">login</a>
- <a href="accounts.php" class="login_link">accounts</a>
- <a href="transfer.php" class="login_link">transfer</a>
- <a href="deposit.php" class="login_link">deposit</a>
- <a href="logout.php" class="login_link">logout</a>
-
- <button type="button" class="btn" id="ghost1">Secondary</button>
+ 
 
  </body>
 </html>
-

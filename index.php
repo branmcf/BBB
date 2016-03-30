@@ -11,8 +11,15 @@
         }
         
     }
+
+    session_name('Private');
     session_start();
-    if (!isset($_SESSION['pr_key']))
+    //  echo "ID";
+    //  echo $_SESSION['new_session'];
+    $ID = $_SESSION['new_session'];
+
+
+    if (!isset($_SESSION['new_session']))
     {
          header ("Location: login.html");
     } else {
@@ -34,7 +41,7 @@
  <!--<a href="login.php" class="login_link">login</a>
  <a href="accounts.php" class="login_link">accounts</a>
  <a href="logout.php" class="login_link">logout</a> -->
-<h1>Private ID is <?=$currentID?></h1>
+<h1>Private ID is <?=$id?></h1>
  </body>
 </html>
 <?php
