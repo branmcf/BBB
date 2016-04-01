@@ -17,10 +17,10 @@
     
     session_name('Private');
     session_start();
-  //  echo "ID";
-  //  echo $_SESSION['new_session'];
+    echo "ID";
+    echo $_SESSION['new_session'];
     $ID = $_SESSION['new_session'];
-    
+    print_r($ID);
 	$db_handle = mysql_pconnect($hostname, $username, $password);
 	$db_found = mysql_select_db($dbname, $db_handle);
     
@@ -32,7 +32,8 @@
             trigger_error('Invalid query: ' . mysql_error()." in ".$query);
         }
         $num_acct = mysql_num_rows($accts);
-        
+        print_r($num_acct);
+        print_r($SQL);
         echo '<table class="table table-striped table-bordered table-hover">';
         echo "<tr><th>Account #</th><th>Balance</th></tr>";
 
@@ -69,7 +70,7 @@
 <button> Withdraw </button>
 </form>
 
-<form action="transfer.php" method="POST">
+<form action="deposit.php" method="POST">
 <button> Transfer </button>
 <!-- <button type="button" data-toggle="modal" data-target="#transferModal"> Transfer </button>  -->
 </form>
@@ -82,25 +83,3 @@
 
 </html>
 
-<?php
-    if(isset($_GET['deposit'])) {
-        depositFunc();
-    }
-    if(isset($_GET['withdraw'])) {
-        withdrawFunc();
-    }
-    if(isset($_GET['transfer'])) {
-        transferFunc();
-    }
-
-    function depositFunc(){
-        echo "Button deposit Clicked";
-    }
-    function withdrawFunc(){
-        echo "Button withdraw clicked";
-    }
-    function transferFunc(){
-        echo "Button transfer clicked";
-    }
-
-    ?>

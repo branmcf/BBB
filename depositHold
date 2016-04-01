@@ -6,25 +6,38 @@
 </head>
 
 <body>
-<form method="post" action="withdraw.php"
+<form method="post" action="deposit.php"
 <?PHP
     function makeDeposit() {
+    //    echo "<br/>";
+      //  echo "New Balance";
+       // echo "<br/>";
+      //  echo "<input type=text name=new_balance_amt >";
         
     }
     function changeValue() {
+     //   echo "changing value";
+    //    echo "<br/>";
+        
+      //  $curbalance = $_POST[d_acct];
+      //  $curtext = $_POST[d_acct_text];
         
         $arr = split(':', $acType);
         $curtext = $arr[0];
         $curbalance = $arr[1];
-        
+
     }
     
     
     //==========================================
 	//	CONNECT TO THE LOCAL DATABASE
 	//==========================================
-	//These variable values need to be changed by you before deploying
+	//$user_name = "root";
+	//$pass_word = "";
+	//$database = "login";
+	//$server = "127.0.0.1";
     
+	//These variable values need to be changed by you before deploying
 	$usertable = "bmcfarland49_users";
     $accttable = "bmcfarland49_accounts";
 	$hostname = "cse3342smu.db.9430912.hostedresource.com";
@@ -39,14 +52,15 @@
     
     session_name('Private');
     session_start();
-    
+    //  echo "ID";
+    //  echo $_SESSION['new_session'];
     $ID = $_SESSION['new_session'];
     
 	$db_handle = mysql_pconnect($hostname, $username, $password);
 	$db_found = mysql_select_db($dbname, $db_handle);
     
     echo '<br/>';
-    echo '<h1> Make a Withdrawl </h1>';
+    echo '<h1> Make a Deposit </h1>';
     echo '<br/>';
     echo '<br/>';
     
@@ -69,13 +83,19 @@
                 $text = $row['accountnum'];
                 $both = $text.":".$value;
                 
+          //      echo "<option value='" . $row['balance'] . "'>" . $row['accountnum'] . "</option>";
+                
                 echo "<option value='" . $both . "'>" . $row['accountnum'] . "</option>";
             }
             echo "</select>";
             echo "<br/>";
             echo "<br/>";
-            
-            echo "Amount to withdraw";
+            //  echo "Current Balance";
+            //  echo "<br/>";
+            //  echo "<input type=text name=balance_amt value=$curbalance>";
+            //   echo "<br/>";
+            // echo "<br/>";
+            echo "Amount to deposit";
             echo "<br/>";
             echo "<input type=text name=deposit_amt value=$depamt>";
             echo "<br/>";
@@ -87,36 +107,42 @@
             $arr = split(':', $acType);
             $curtext = $arr[0];
             $curbalance = $arr[1];
-            
-            $withdraw = $_POST[deposit_amt];
-            
-            if($withdraw > $curbalance){
-                echo "Error:  Insufficient funds";
-            } else {
-                $newbalance = $curbalance - $withdraw;
-        
 
-            $SQLUPD = "UPDATE $accttable SET BALANCE = $newbalance WHERE accountnum = '$curtext' AND SESSION_ID = '$ID'";
-            $update = mysql_query($SQLUPD);
-            if (!$update) {
-                trigger_error('Invalid query: ' . mysql_error()." in ".$query);
-            }
-            }
+        //    print_r($arr);
             
+            $deposit = $_POST[deposit_amt];
+            
+      //      $newbalance = $deposit + $acType;
+            $newbalance = $deposit + $curbalance;
+       //     echo " text ";
+       //     echo $curtext;
+ 
+            //    $SQL = "UPDATE $accttable WHERE session_id = '$ID'";
+          //  $accts = mysql_query($SQL);
+        //    if (!$accts) {
+          //      trigger_error('Invalid query: ' . mysql_error()." in ".$query);
+          //  }
+
+            
+            //    echo "This is the selected item $acType";
             echo "$";
-            echo "$withdraw wuthdrawn from account $curtext";
+            echo "$deposit deposited to account $curtext";
             echo "<br/>";
+            //     echo $acType;
+            //  echo $deposit;
+            //echo $balance;
+            //    echo $newbalance;
             echo "New Balance";
             echo "<br/>";
-            
+ //       echo "<input type=hidden name=selected_text id=selected_text value="" />";
+
             echo "<input type=text name=new_balance_amt value=$newbalance>";
             
         }
     }
     ?>
 <br/>
-<input type="submit" name="submit" value="Withdraw">
+<input type="submit" name="submit" value="Deposit">
 </form>
 </body>
 </html>
-

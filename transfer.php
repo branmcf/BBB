@@ -45,16 +45,20 @@
             echo "<option value='" . $row['balance'] . "'>" . $row['accountnum'] . "</option>";
         }
         
+        
+        echo "</select>";
+        
         echo '<label for="to_acct"> To Account </>';
         echo '<select name="to_acct" id="to_acct">';
         echo "<option value=''>Select an Account</option>";
-        
+
         while ($row = mysql_fetch_array($accts, MYSQL_ASSOC))
         {
             echo "<option value='" . $row['balance'] . "'>" . $row['accountnum'] . "</option>";
         }
-
         echo "</select>";
+
+
         echo "<br/>";
         echo "<br/>";
         echo "Amount";
