@@ -104,18 +104,20 @@
             }
             
             echo "$";
-            echo "$withdraw wuthdrawn from account $curtext";
+            echo "$withdraw withdrawn from account $curtext";
             echo "<br/>";
             echo "New Balance";
             echo "<br/>";
-            
             echo "<input type=text name=new_balance_amt value=$newbalance>";
             
         }
     }
     ?>
 <br/>
+<br/>
+
 <input type="submit" name="submit" value="Withdraw">
+
 </form>
 </body>
 </html>

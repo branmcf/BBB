@@ -17,10 +17,10 @@
     
     session_name('Private');
     session_start();
-    echo "ID";
-    echo $_SESSION['new_session'];
+ //   echo "ID";
+   // echo $_SESSION['new_session'];
     $ID = $_SESSION['new_session'];
-    print_r($ID);
+ //   print_r($ID);
 	$db_handle = mysql_pconnect($hostname, $username, $password);
 	$db_found = mysql_select_db($dbname, $db_handle);
     
@@ -32,8 +32,8 @@
             trigger_error('Invalid query: ' . mysql_error()." in ".$query);
         }
         $num_acct = mysql_num_rows($accts);
-        print_r($num_acct);
-        print_r($SQL);
+    //    print_r($num_acct);
+      //  print_r($SQL);
         echo '<table class="table table-striped table-bordered table-hover">';
         echo "<tr><th>Account #</th><th>Balance</th></tr>";
 
@@ -44,7 +44,7 @@
             echo "<tr><td>";
             echo $row['accountnum'];
             echo "</td><td>";
-            echo $row['balance'];
+            echo "$" . $row['balance'];
             echo "</td>";
         }
         echo "</table>";    
@@ -60,7 +60,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
  </head>
 
- <body style="background: black;">
+ <body style="background: white;">
 
 <form action="deposit.php" method="POST">
 <button> Deposit </button>
@@ -70,7 +70,7 @@
 <button> Withdraw </button>
 </form>
 
-<form action="deposit.php" method="POST">
+<form action="transfer.php" method="POST">
 <button> Transfer </button>
 <!-- <button type="button" data-toggle="modal" data-target="#transferModal"> Transfer </button>  -->
 </form>
