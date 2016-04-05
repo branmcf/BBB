@@ -13,6 +13,10 @@
  <a href="deposit.php" class="login_link">deposit</a>
  <a href="logout.php" class="login_link">logout</a>
 
- <?php echo '<p>logout page</p>'; ?> 
+ <?php
+     session_unset();
+     session_destroy();
+     
+     echo '<p>logout page</p>'; ?>
  </body>
 </html>

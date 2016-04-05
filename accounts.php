@@ -20,11 +20,16 @@
  //   echo "ID";
    // echo $_SESSION['new_session'];
     $ID = $_SESSION['new_session'];
- //   print_r($ID);
+// print_r($ID);
 	$db_handle = mysql_pconnect($hostname, $username, $password);
 	$db_found = mysql_select_db($dbname, $db_handle);
     
-    
+  /*  if(defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
+        echo "CRYPT_BLOWFISH IS ENABLED!";
+    } else {
+        echo "CRYPT_BLOWFISH IS not ENABLED!";
+    }
+ */   
 	if ($db_found) {
         $SQL = "SELECT accountnum, balance FROM $accttable WHERE session_id = '$ID'";
         $accts = mysql_query($SQL);
@@ -32,8 +37,8 @@
             trigger_error('Invalid query: ' . mysql_error()." in ".$query);
         }
         $num_acct = mysql_num_rows($accts);
-    //    print_r($num_acct);
-      //  print_r($SQL);
+ //       print_r($num_acct);
+   //     print_r($SQL);
         echo '<table class="table table-striped table-bordered table-hover">';
         echo "<tr><th>Account #</th><th>Balance</th></tr>";
 

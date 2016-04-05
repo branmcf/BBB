@@ -26,6 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	$uname = htmlspecialchars($uname);
 	$pword = htmlspecialchars($pword);
+ //   $hashed_pw = hash('sha512',$pword);
+ //   echo $hashed_pw;
 
 	//==========================================
 	//	CONNECT TO THE LOCAL DATABASE
@@ -51,23 +53,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 		$uname = quote_smart($uname, $db_handle);
 		$pword = quote_smart($pword, $db_handle);
+        
+    //    $hash_pw = sha512($pword);
+
+		$SQL = "SELECT * FROM $usertable WHERE username = $uname AND password = concat(salt,md5($pword))";
 
 
-
-		$SQL = "SELECT * FROM $usertable WHERE username = $uname AND password = '$pword'";
+	//	$SQL = "SELECT * FROM $usertable WHERE username = $uname AND password = '$pword'";
 		//print_r($SQL);
 		$result = mysql_query($SQL);
-        if (!$result) {
-    		trigger_error('Invalid query: ' . mysql_error()." in ".$query);
+ /*       if (!$result) {
+ //           echo "invalid login";
+            session_unset();
+            header ("Location: index.php");
+            exit;
+    		//trigger_error('Invalid query: ' . mysql_error()." in ".$query);
     	}
-		$num_rows = mysql_num_rows($result);
-
-
+  */
+  
 	//====================================================
 	//	CHECK TO SEE IF THE $result VARIABLE IS TRUE
 	//====================================================
 		//print_r($num_rows);
 		if ($result) {
+            $num_rows = mysql_num_rows($result);
 			if ($num_rows > 0) {
                 session_name('Private');
                  session_start();
@@ -92,8 +101,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     
  			}
 			else {
-				header ("Location: index.php");
+                session_write_close();
+                echo "invalid login";
+			//	header ("Location: index.php");
+                exit;
 			}
+        } else {
+            session_write_close();
+            session_unset();
+            echo "invalid login";
+
+          //  trigger_error('Invalid query: ' . mysql_error()." in ".$query);
+        //    header ("Location: index.php");
         }
 
 
@@ -119,13 +138,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
  <body style="background: white">
  </body>
 </html>
+
 <?php
     // Store it back
+    if ($result) {
     session_name('Private');
     session_id($private_id);
     session_start();
     $_SESSION['pr_key'] = $b;
     session_write_close();
+    }
     
 ?>
-
+ 

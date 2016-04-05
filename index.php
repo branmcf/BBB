@@ -46,11 +46,9 @@
 </html>
 <?php
     // Store it back
-    session_name('Private');
+   session_name('Private');
     session_id($private_id);
     session_start();
     $_SESSION['pr_key'] = $b;
     session_write_close();
-    
-    
-    ?>
+?>
