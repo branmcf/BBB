@@ -3,8 +3,8 @@
 <title>Black Box Bank</title>
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-</head>
 
+</head>
 <body>
 <form method="post" action="deposit.php"
 <?PHP
@@ -37,9 +37,8 @@
     $acType=0;
     $curtext=" nope ";
     
-    session_name('Private');
+    session_name('BlackBoxBank');
     session_start();
-
     $ID = $_SESSION['new_session'];
     
 	$db_handle = mysql_pconnect($hostname, $username, $password);
@@ -80,7 +79,7 @@
             echo "<input type=text name=deposit_amt value=$depamt>";
             echo "<br/>";
             echo "<br/>";
-            
+  
             
         } else {
             $acType = $_POST[d_acct];
@@ -104,12 +103,17 @@
             echo "<br/>";
  
             echo "<input type=text name=new_balance_amt value=$newbalance>";
+            echo "<input type=submit name=deposit id=deposit value=done>";
+
             
         }
     }
     ?>
 <br/>
-<input type="submit" name="submit" value="Deposit">
+<br/>
+<br/>
+<input type="submit" name="submit" id="submit" value="Deposit">
+
 </form>
 </body>
 </html>

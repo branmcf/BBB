@@ -26,8 +26,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 	$uname = htmlspecialchars($uname);
 	$pword = htmlspecialchars($pword);
- //   $hashed_pw = hash('sha512',$pword);
- //   echo $hashed_pw;
 
 	//==========================================
 	//	CONNECT TO THE LOCAL DATABASE
@@ -54,7 +52,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$uname = quote_smart($uname, $db_handle);
 		$pword = quote_smart($pword, $db_handle);
         
-    //    $hash_pw = sha512($pword);
 
 		$SQL = "SELECT * FROM $usertable WHERE username = $uname AND password = concat(salt,md5($pword))";
 
@@ -78,17 +75,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		if ($result) {
             $num_rows = mysql_num_rows($result);
 			if ($num_rows > 0) {
-                session_name('Private');
+                session_name('BlackBoxBank');
                  session_start();
                  $private_id = session_id();
-                $b = $_SESSION['pr_key'];
-               $_SESSION['new_session'] = $private_id;
-      //          echo $_SESSION['new_session'];
+                 $b = $_SESSION['pr_key'];
+          //      echo "b value: " . $b;
+                 $_SESSION['new_session'] = $private_id;
+                $_SESSION['ID'] = $private_id;
+                 $_SESSION['name'] = 'BlackBoxBank';
+                
+        //       echo "new session " . $_SESSION['new_session'];
                 
           //      print_r($private_id);
                  $b = $_SESSION['pr_key'];
                  
-                         //        session_write_close();
+                session_write_close();
        //         echo $private_id;
                 
                 $SQL_upd = "UPDATE $accttable SET SESSION_ID = '$private_id' WHERE username = $uname";
@@ -108,7 +109,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 			}
         } else {
             session_write_close();
-            session_unset();
+         //   session_unset();
             echo "invalid login";
 
           //  trigger_error('Invalid query: ' . mysql_error()." in ".$query);
@@ -142,11 +143,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <?php
     // Store it back
     if ($result) {
-    session_name('Private');
-    session_id($private_id);
-    session_start();
-    $_SESSION['pr_key'] = $b;
-    session_write_close();
+      session_name('BlackBoxBank');
+      $_SESSION['name'] = 'BlackBoxBank';
+      session_id($private_id);
+      session_start();
+      $_SESSION['pr_key'] = $b;
+      session_write_close();
     }
     
 ?>

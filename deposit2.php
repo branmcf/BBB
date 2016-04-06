@@ -3,10 +3,10 @@
 <title>Black Box Bank</title>
 <link rel="stylesheet" href="./style.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-</head>
 
+</head>
 <body>
-<form method="post" action="withdraw.php"
+<form method="post" action="deposit.php"
 <?PHP
     function makeDeposit() {
         
@@ -46,7 +46,7 @@
 	$db_found = mysql_select_db($dbname, $db_handle);
     
     echo '<br/>';
-    echo '<h1> Make a Withdrawl </h1>';
+    echo '<h1> Make a Deposit </h1>';
     echo '<br/>';
     echo '<br/>';
     
@@ -75,11 +75,12 @@
             echo "<br/>";
             echo "<br/>";
             
-            echo "Amount to withdraw";
+            echo "Amount to deposit";
             echo "<br/>";
             echo "<input type=text name=deposit_amt value=$depamt>";
             echo "<br/>";
             echo "<br/>";
+            echo "<input type=submit name=deposit id=deposit value=Deposit>";
             
             
         } else {
@@ -88,37 +89,31 @@
             $curtext = $arr[0];
             $curbalance = $arr[1];
             
-            $withdraw = $_POST[deposit_amt];
+            $deposit = $_POST[deposit_amt];
+            $newbalance = $deposit + $curbalance;
             
-            if($withdraw > $curbalance){
-                echo "Error:  Insufficient funds";
-            } else {
-                $newbalance = $curbalance - $withdraw;
-        
-
             $SQLUPD = "UPDATE $accttable SET BALANCE = $newbalance WHERE accountnum = '$curtext' AND SESSION_ID = '$ID'";
             $update = mysql_query($SQLUPD);
             if (!$update) {
                 trigger_error('Invalid query: ' . mysql_error()." in ".$query);
             }
-            }
             
             echo "$";
-            echo "$withdraw withdrawn from account $curtext";
+            echo "$deposit deposited to account $curtext";
             echo "<br/>";
             echo "New Balance";
             echo "<br/>";
+            
             echo "<input type=text name=new_balance_amt value=$newbalance>";
+            echo "<input type=submit name=deposit id=deposit value=done>";
+            
             
         }
     }
     ?>
 <br/>
-<br/>
-
-<input type="submit" name="submit" value="Withdraw">
+<input type="submit" name="submit" id="submit" value="Deposit">
 
 </form>
 </body>
 </html>
-

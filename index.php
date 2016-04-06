@@ -2,7 +2,7 @@
     function isValid($_SESSION)
     {
       //  $strId = (string) $sessionId;
-       $strId = (string) $_SESSION['Private'];
+       $strId = (string) $_SESSION['BlackBoxBank'];
         if ($strId == (string) $sessionId){
             return TRUE;
         } else {
@@ -11,21 +11,23 @@
         }
         
     }
-
-    session_name('Private');
+     
+    session_name('BlackBoxBank');
     session_start();
-    //  echo "ID";
-    //  echo $_SESSION['new_session'];
-    $ID = $_SESSION['new_session'];
-
-
     if (!isset($_SESSION['new_session']))
-    {
+   {
          header ("Location: login.html");
     } else {
+        session_name(BBB_SESSION_NAME);
+        session_start();
+        $private_id = session_id();
+        $_SESSION['new_session'] = $private_id;
+        $_SESSION['name'] = 'BlackBoxBank';
+
         header ("Location: accounts.php");
+
     }
-    ?>
+?>
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -41,12 +43,12 @@
  <!--<a href="login.php" class="login_link">login</a>
  <a href="accounts.php" class="login_link">accounts</a>
  <a href="logout.php" class="login_link">logout</a> -->
-<h1>Private ID is <?=$id?></h1>
+<h1>BlackBoxBank ID is <?=$id?></h1>
  </body>
 </html>
 <?php
     // Store it back
-   session_name('Private');
+   session_name('BlackBoxBank');
     session_id($private_id);
     session_start();
     $_SESSION['pr_key'] = $b;

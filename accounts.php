@@ -15,7 +15,7 @@
 	$dbname = "cse3342smu";
 	$password = "FaPn0!dMn";
     
-    session_name('Private');
+    session_name('BlackBoxBank');
     session_start();
  //   echo "ID";
    // echo $_SESSION['new_session'];
@@ -24,12 +24,7 @@
 	$db_handle = mysql_pconnect($hostname, $username, $password);
 	$db_found = mysql_select_db($dbname, $db_handle);
     
-  /*  if(defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
-        echo "CRYPT_BLOWFISH IS ENABLED!";
-    } else {
-        echo "CRYPT_BLOWFISH IS not ENABLED!";
-    }
- */   
+
 	if ($db_found) {
         $SQL = "SELECT accountnum, balance FROM $accttable WHERE session_id = '$ID'";
         $accts = mysql_query($SQL);
@@ -80,6 +75,9 @@
 <!-- <button type="button" data-toggle="modal" data-target="#transferModal"> Transfer </button>  -->
 </form>
 
+<form action="logout.php" method="POST">
+<button> logout </button>
+</form>
 
     <!-- Bootstrap Core JavaScript -->
   <script src="/bootstrap.min.js"></script>

@@ -36,7 +36,7 @@
 	$dbname = "cse3342smu";
 	$password = "FaPn0!dMn";
     
-    session_name('Private');
+    session_name('BlackBoxBank');
     session_start();
     //  echo "ID";
     //  echo $_SESSION['new_session'];
