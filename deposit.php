@@ -1,12 +1,3 @@
-<html>
-<head>
-<title>Black Box Bank</title>
-<link rel="stylesheet" href="./style.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-
-</head>
-<body>
-<form method="post" action="deposit.php"
 <?PHP
     function makeDeposit() {
         
@@ -21,16 +12,16 @@
     
     
     //==========================================
-	//	CONNECT TO THE LOCAL DATABASE
-	//==========================================
-	//These variable values need to be changed by you before deploying
+    //  CONNECT TO THE LOCAL DATABASE
+    //==========================================
+    //These variable values need to be changed by you before deploying
     
-	$usertable = "bmcfarland49_users";
+    $usertable = "bmcfarland49_users";
     $accttable = "bmcfarland49_accounts";
-	$hostname = "cse3342smu.db.9430912.hostedresource.com";
-	$username = "cse3342smu";
-	$dbname = "cse3342smu";
-	$password = "FaPn0!dMn";
+    $hostname = "cse3342smu.db.9430912.hostedresource.com";
+    $username = "cse3342smu";
+    $dbname = "cse3342smu";
+    $password = "FaPn0!dMn";
     
     $curbalance=0;
     $depamt=0;
@@ -41,15 +32,15 @@
     session_start();
     $ID = $_SESSION['new_session'];
     
-	$db_handle = mysql_pconnect($hostname, $username, $password);
-	$db_found = mysql_select_db($dbname, $db_handle);
+    $db_handle = mysql_pconnect($hostname, $username, $password);
+    $db_found = mysql_select_db($dbname, $db_handle);
     
     echo '<br/>';
     echo '<h1> Make a Deposit </h1>';
     echo '<br/>';
     echo '<br/>';
     
-	if ($db_found) {
+    if ($db_found) {
     $SQL = "SELECT accountnum, balance FROM $accttable WHERE session_id = '$ID'";
         $accts = mysql_query($SQL);
         if (!$accts) {
@@ -109,6 +100,17 @@
         }
     }
     ?>
+<!-- 
+<html>
+<head>
+<title>Black Box Bank</title>
+<link rel="stylesheet" href="./style.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+
+</head>
+<body style="background:black;">
+<form method="post" action="deposit.php">
+
 <br/>
 <br/>
 <br/>
@@ -116,4 +118,4 @@
 
 </form>
 </body>
-</html>
+</html> -->

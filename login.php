@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                     trigger_error('Invalid query: ' . mysql_error()." in ".$query);
                 }
                 session_write_close();
-                header ("Location: accounts.php");
+                header ("Location: accounts.html");
     
  			}
 			else {
@@ -128,17 +128,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 }
 
 ?>
-
-<html>
- <head>
-  <title>Black Box Bank</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
- </head>
-
- <body style="background: white">
- </body>
-</html>
 
 <?php
     // Store it back

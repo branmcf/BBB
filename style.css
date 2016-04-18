@@ -20,7 +20,7 @@ a{
 
 .login-page {
   width: 360px;
-  padding: 8% 0 0;
+  padding: 0 0 0;
   margin: auto;
 }
 .form {
@@ -58,6 +58,7 @@ a{
   transition: all 0.3 ease;
   cursor: pointer;
 }
+
 .form button:hover,.form button:active,.form button:focus,.form input:focus {
   background: #ECECEC;
 }
@@ -130,4 +131,44 @@ button{
 	  -webkit-transition: all 0.3 ease;
 	  transition: all 0.3 ease;
 	  cursor: pointer;
+}
+
+div img{
+  display: block;
+  margin: auto;
+  padding-right: 5px;
+}
+
+.frouter{
+
+}
+#outer{
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.inner{
+  display: inline-block;
+}
+
+.inner button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: transparent;
+  width: 100%;
+  border: 3px solid white;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.inner button:hover {
+    background: #ECECEC;
 }

@@ -9,7 +9,7 @@
     
 	//These variable values need to be changed by you before deploying
 	$usertable = "bmcfarland49_users";
-    $accttable = "bmcfarland49_accounts";
+  $accttable = "bmcfarland49_accounts";
 	$hostname = "cse3342smu.db.9430912.hostedresource.com";
 	$username = "cse3342smu";
 	$dbname = "cse3342smu";
@@ -52,37 +52,3 @@
     }
     
     ?>
-<html>
- <head>
-  <title>Black Box Bank</title>
-  <link rel="stylesheet" href="style.css" type="text/css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
- </head>
-
- <body style="background: white;">
-
-<form action="deposit.php" method="POST">
-<button> Deposit </button>
-</form>
-
-<form action="withdraw.php" method="POST">
-<button> Withdraw </button>
-</form>
-
-<form action="transfer.php" method="POST">
-<button> Transfer </button>
-<!-- <button type="button" data-toggle="modal" data-target="#transferModal"> Transfer </button>  -->
-</form>
-
-<form action="logout.php" method="POST">
-<button> logout </button>
-</form>
-
-    <!-- Bootstrap Core JavaScript -->
-  <script src="/bootstrap.min.js"></script>
-
- </body>
-
-</html>
-

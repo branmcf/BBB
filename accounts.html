@@ -1,0 +1,55 @@
+<html>
+ <head>
+  <title>Black Box Bank</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js">
+  <link rel="icon" type="image/png" href="skull.ico">
+ </head>
+
+ <body style="background: black;">
+    <div class="frouter">
+      <div id="outer">
+        <div class="inner">
+          <form action="accounts.php" method="GET">
+          <button> View Accounts </button>
+          </form>
+        </div>
+
+        <div class="inner">
+          <form action="deposit.php" method="POST">
+          <button> Deposit </button>
+          </form>
+        </div>
+
+        <div class="inner">
+          <form action="withdraw.php" method="POST">
+          <button> Withdraw </button>
+          </form>
+        </div>
+
+        <div class="inner">
+          <form action="transfer.php" method="POST">
+          <button> Transfer </button>
+          <!-- <button type="button" data-toggle="modal" data-target="#transferModal"> Transfer </button>  -->
+          </form>
+        </div>
+
+        <div class="inner">
+          <form action="logout.php" method="POST">
+          <button> logout </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="content">
+      
+    </div>
+
+    <!-- Bootstrap Core JavaScript -->
+  <script src="/bootstrap.min.js"></script>
+
+ </body>
+
+</html>
